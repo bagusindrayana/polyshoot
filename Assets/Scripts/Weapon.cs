@@ -8,8 +8,9 @@ public class Weapon : MonoBehaviour
 	public Transform firePoint;
 	public Vector3 positionOffset;
 	public Vector3 rotationOffset;
-	public GameObject bulletPrefab;
+	public LineRenderer bulletPrefab;
 	public float fireDelay = 0.2f;
+    public int weaponDamage = 10;
 
 
     // Start is called before the first frame update
