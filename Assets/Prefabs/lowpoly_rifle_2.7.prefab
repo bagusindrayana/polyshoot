@@ -130,5 +130,9 @@ MonoBehaviour:
   firePoint: {fileID: 1693174022880284530}
   positionOffset: {x: 0.035, y: -0.13, z: 0.06}
   rotationOffset: {x: -90, y: 0, z: 0}
+  aimPositionOffset: {x: 0, y: -0.11, z: 0.1}
+  aimRotationOffset: {x: -90, y: 0, z: 0}
   bulletPrefab: {fileID: 6396148346967409838, guid: eb9ba7497587c46ef81a630b49588215, type: 3}
   fireDelay: 0.2
+  weaponDamage: 10
+  aim: 0

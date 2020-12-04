@@ -7,16 +7,22 @@ public class WeaponManager : MonoBehaviour
 {
     public Transform handTransform;
     public List<MyWeapon> myWeapons;
-    public float recoil = 0f;
+    
+    public float initialZoom = 60f;
 
+    float recoil = 0f;
     GameObject curWeapon;
     float curTime = 0f;
     int curIndex;
     Quaternion originalPos;
     Quaternion totalRecoil;
+
+    Camera camera;
+   
     
 
     void Start(){
+    	camera = Camera.main;
         originalPos = handTransform.localRotation;
     }
 
@@ -40,10 +46,18 @@ public class WeaponManager : MonoBehaviour
     		
     	}
 
+    	if(Input.GetButtonDown("Fire2")){
+    		if(curWeapon != null){
+            	var w = curWeapon.GetComponent<Weapon>();
+            	w.aim = !w.aim;
+            }
+    	}
+
         weaponRecoil();
     }
 
     public void selectWeapon(int index){
+
     	curIndex = index;
     	MyWeapon w = myWeapons[index];
     	if(curWeapon == null || w.weapon.weaponName != curWeapon.GetComponent<Weapon>().weaponName){
@@ -53,8 +67,12 @@ public class WeaponManager : MonoBehaviour
     		GameObject wp = Instantiate(w.weapon.gameObject,handTransform.position,Quaternion.identity);
 	    	wp.transform.SetParent(handTransform);
 	    	curWeapon = wp;
-	    
-            curTime = curWeapon.GetComponent<Weapon>().fireDelay;
+	    	var ww = curWeapon.GetComponent<Weapon>();
+            curTime = ww.fireDelay;
+            ww.originalZoom = initialZoom;
+            if(ww.ammoText != null){
+            	ww.ammoText.text = w.weaponAmmo.ToString();
+            }
     	}
     }
 
@@ -63,10 +81,11 @@ public class WeaponManager : MonoBehaviour
     //GameObject bullet;
     public void fireWeapon(){
     	curTime += Time.deltaTime;
-        
-    	if(curTime > curWeapon.GetComponent<Weapon>().fireDelay){
-            var w = curWeapon.GetComponent<Weapon>();
-            var mw = myWeapons[curIndex];
+    	var mw = myWeapons[curIndex];
+        var w = curWeapon.GetComponent<Weapon>();
+    	if(curTime > w.fireDelay){
+            
+            
             if(mw.weaponAmmo > 0){
                 
                 RaycastHit hit;
@@ -112,6 +131,10 @@ public class WeaponManager : MonoBehaviour
             }
     	}
 
+    	if(w.ammoText != null){
+        	w.ammoText.text = mw.weaponAmmo.ToString();
+        }
+
         
 
     }
@@ -139,6 +162,8 @@ public class WeaponManager : MonoBehaviour
         //handTransform.transform.localRotation = Quaternion.Lerp(handTransform.transform.localRotation,Quaternion.Euler(r),Time.deltaTime*20f);
         //handTransform.transform.rotation = Quaternion.Euler(r);
     }
+
+
 
 
 }
