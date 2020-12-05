@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657934, g: 0.4964136, b: 0.5748188, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -484,7 +484,7 @@ MonoBehaviour:
   myWeapons:
   - weapon: {fileID: 289637815598891553, guid: 50052b30fefcfcdaaad0e2d5a23524f2, type: 3}
     weaponAmmo: 50
-  - weapon: {fileID: 7607847834814415755, guid: 0f238e0e2641cd61f978ee97fcb6da83, type: 3}
+  - weapon: {fileID: 6482447664312561030, guid: 4173d7dc9407643769f14d2d59f189b3, type: 3}
     weaponAmmo: 100
   initialZoom: 60
 --- !u!1 &427564930
