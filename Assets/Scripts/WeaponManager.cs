@@ -13,7 +13,7 @@ public class WeaponManager : MonoBehaviour
     float recoil = 0f;
     GameObject curWeapon;
     float curTime = 0f;
-    int curIndex;
+    int curIndex = 0;
     Quaternion originalPos;
     Quaternion totalRecoil;
 
@@ -23,16 +23,25 @@ public class WeaponManager : MonoBehaviour
     void Start(){
     	camera = Camera.main;
         originalPos = handTransform.localRotation;
+        selectWeapon(curIndex);
     }
 
     void Update(){
         
-    	if(Input.GetKeyDown(KeyCode.Alpha1)){
-    		selectWeapon(0);
+    	if(Input.GetAxis("Mouse ScrollWheel") > 0){
+    		curIndex += 1;
+    		if(curIndex >= myWeapons.Count){
+    			curIndex = 0;
+    		}
+    		selectWeapon(curIndex);
     	}
 
-    	if(Input.GetKeyDown(KeyCode.Alpha2)){
-    		selectWeapon(1);
+    	if(Input.GetAxis("Mouse ScrollWheel") < 0){
+    		curIndex -= 1;
+    		if(curIndex < 0){
+    			curIndex = myWeapons.Count - 1;
+    		}
+    		selectWeapon(curIndex);
     	}
 
     	if(cw != null && ((Input.GetButton("Fire1") && !cw.singleFire) || (Input.GetButtonDown("Fire1") && cw.singleFire))){
@@ -96,40 +105,45 @@ public class WeaponManager : MonoBehaviour
             
             
             if(mw.weaponAmmo > 0){
-                
+                GameObject sfx = new GameObject();
+                sfx.AddComponent<AudioSource>();
+                sfx.GetComponent<AudioSource>().clip = w.weaponSoundEffect;
+                sfx.transform.SetParent(handTransform);
+                sfx.GetComponent<AudioSource>().Play();
+                //Instantiate(sfx,transform.position,Quaternion.identity);
                 RaycastHit hit;
-                if (Physics.Raycast(w.firePoint.position, w.firePoint.forward, out hit, 100f))
+                if (Physics.Raycast(w.firePoint.position, w.firePoint.forward, out hit, 100f) && !w.bulletRigidBody)
                 {
                     // Debug.DrawRay(curWeapon.weapon.firePoint.position, curWeapon.weapon.firePoint.forward * hit.distance, Color.yellow);
                     // Debug.Log("Did Hit");
                     var b = Instantiate(w.bulletPrefab,w.firePoint.position,Quaternion.identity);
                     b.transform.SetParent(handTransform);
                     var lr = b.GetComponent<LineRenderer>();
-                    //lr.SetPosition(0,b.transform.position);
                     lr.SetPosition(1,w.firePoint.forward * hit.distance);
-                    // Vector3 objectScale = b.transform.localScale;
-                    // float distance = Vector3.Distance(hit.point, curWeapon.weapon.firePoint.position);
-                    // Vector3 newScale = new Vector3(objectScale.x, objectScale.y, distance);
-                    // b.transform.localScale = newScale;
-
-                    // var bullet = b.GetComponent<Bullet>();
-                    // bullet.damage = w.weaponDamage;
+  
 
                     if(hit.transform.GetComponent<Rigidbody>()){
                         hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(1000f * w.firePoint.forward, hit.point);
                     }
                     
                     Instantiate(w.hitEffect,hit.point,Quaternion.LookRotation(hit.normal));
+
                     Destroy(b,0.1f);
                     
                 } else {
                     var b = Instantiate(w.bulletPrefab,w.firePoint.position,Quaternion.identity);
-                    b.transform.SetParent(handTransform);
-                    var lr = b.GetComponent<LineRenderer>();
-                    lr.SetPosition(1,w.firePoint.forward * 100f);
+                    // b.transform.SetParent(handTransform);
+                    if(w.bulletRigidBody){
+                        b.GetComponent<Rigidbody>().AddForce(1000 * w.firePoint.forward);
+                    } else {
+                        b.transform.SetParent(handTransform);
+                        var lr = b.GetComponent<LineRenderer>();
+                        lr.SetPosition(1,w.firePoint.forward * 100f);
+                        Destroy(b,0.1f);
+                    }
                     // var bullet = b.GetComponent<Bullet>();
                     // bullet.damage = w.weaponDamage;
-                    Destroy(b,0.1f);
+                    
                     
                 }
                 
@@ -154,8 +168,16 @@ public class WeaponManager : MonoBehaviour
 
     public void weaponRecoil(){
         var w = cw;
+        var f = 1;
+        if(w == null){
+        	return;
+        }
+
+        if(w.aim){
+        	f = 2;
+        }
         if(recoil > 0){
-            var r = new Vector3(UnityEngine.Random.Range(w.rangeRecoilX.x,w.rangeRecoilX.y),UnityEngine.Random.Range(w.rangeRecoilY.x,w.rangeRecoilY.y),UnityEngine.Random.Range(w.rangeRecoilZ.x,w.rangeRecoilZ.y));
+            var r = new Vector3(UnityEngine.Random.Range(w.rangeRecoilX.x,w.rangeRecoilX.y)/f,UnityEngine.Random.Range(w.rangeRecoilY.x,w.rangeRecoilY.y)/f,UnityEngine.Random.Range(w.rangeRecoilZ.x,w.rangeRecoilZ.y)/f);
             totalRecoil = Quaternion.Euler(r);
             handTransform.transform.localRotation = Quaternion.Lerp(handTransform.transform.localRotation,totalRecoil,Time.deltaTime*10f);
             recoil -= Time.deltaTime;

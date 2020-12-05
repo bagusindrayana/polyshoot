@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Weapon : MonoBehaviour
 {	
@@ -11,12 +12,13 @@ public class Weapon : MonoBehaviour
 	public Vector3 rotationOffset;
 	public Vector3 aimPositionOffset;
 	public Vector3 aimRotationOffset;
-	public LineRenderer bulletPrefab;
+	public GameObject bulletPrefab;
+	public bool bulletRigidBody;
 	public float fireDelay = 0.2f;
     public int weaponDamage = 10;
     public bool aim = false;
     public float aimZooom = 40f;
-    public TextMesh ammoText; 
+    public TextMeshProUGUI ammoText; 
     Camera camera;
     [HideInInspector]
     public float originalZoom;
@@ -28,6 +30,7 @@ public class Weapon : MonoBehaviour
 
     public bool singleFire;
     public bool ready;
+    public AudioClip weaponSoundEffect;
 
 
     // Start is called before the first frame update
