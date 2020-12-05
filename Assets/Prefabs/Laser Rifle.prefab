@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5568963845359689928}
   - component: {fileID: 6396148346967409838}
+  - component: {fileID: -1458095401166646378}
   m_Layer: 0
   m_Name: Laser Rifle
   m_TagString: Untagged
@@ -138,3 +139,16 @@ LineRenderer:
     generateLightingData: 1
   m_UseWorldSpace: 0
   m_Loop: 0
+--- !u!114 &-1458095401166646378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610861514682680803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804d4ebf22e1606fdbe955fd227da21d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToDestroy: 2

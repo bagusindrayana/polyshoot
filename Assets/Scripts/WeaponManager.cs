@@ -110,6 +110,8 @@ public class WeaponManager : MonoBehaviour
                 sfx.GetComponent<AudioSource>().clip = w.weaponSoundEffect;
                 sfx.transform.SetParent(handTransform);
                 sfx.GetComponent<AudioSource>().Play();
+                sfx.AddComponent<DestroyInSecond>();
+                sfx.GetComponent<DestroyInSecond>().timeToDestroy = 2f;
                 //Instantiate(sfx,transform.position,Quaternion.identity);
                 RaycastHit hit;
                 if (Physics.Raycast(w.firePoint.position, w.firePoint.forward, out hit, 100f) && !w.bulletRigidBody)
@@ -125,9 +127,14 @@ public class WeaponManager : MonoBehaviour
                     if(hit.transform.GetComponent<Rigidbody>()){
                         hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(1000f * w.firePoint.forward, hit.point);
                     }
-                    
-                    Instantiate(w.hitEffect,hit.point,Quaternion.LookRotation(hit.normal));
 
+                    if(hit.transform.tag == "Enemy" || hit.transform.tag == "Damageable"){
+                        hit.transform.SendMessage("ApplyDamage",w.weaponDamage);
+                    }
+                    
+                    var he = Instantiate(w.hitEffect,hit.point,Quaternion.LookRotation(hit.normal));
+                    he.AddComponent<DestroyInSecond>();
+                    he.GetComponent<DestroyInSecond>().timeToDestroy = 2f;
                     Destroy(b,0.1f);
                     
                 } else {

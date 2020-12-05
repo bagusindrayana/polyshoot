@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
 	public float powerEffect = 10f;
 	public GameObject hitEffect;
 	bool duar;
+    Rigidbody myRb;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,15 +18,15 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(myRb && duar){
+            Destroy(myRb);
+        }
     }
 
     void OnTriggerEnter(Collider col){
-    	Rigidbody myRb = gameObject.GetComponent<Rigidbody>();
+    	myRb = gameObject.GetComponent<Rigidbody>();
     	if(duar){
-    		if(myRb){
-    			Destroy(myRb);
-    		}
+    		
     		return;
     	}
     	
@@ -39,7 +40,7 @@ public class Bullet : MonoBehaviour
 		}
 		Instantiate(hitEffect,epos,transform.rotation);
 		duar = true;
-		Destroy(gameObject,2f);
+		Destroy(gameObject,1f);
 		
     }
 }
