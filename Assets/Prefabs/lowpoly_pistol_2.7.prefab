@@ -124,7 +124,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4294965930
+    rgba: 4294944329
 --- !u!1 &5256648956819264889
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +188,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 7922251121040759823, guid: 1eb1d5a0b117efcd5ba6e7fdf801082f, type: 3}
-  - {fileID: 4362962105363994262, guid: 1eb1d5a0b117efcd5ba6e7fdf801082f, type: 3}
+  - {fileID: 2100000, guid: d394a1f1cf69d4de194cec0c37cb5b4b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -235,3 +235,9 @@ MonoBehaviour:
   aimZooom: 40
   ammoText: {fileID: 3497991187904835864}
   originalZoom: 0
+  hitEffect: {fileID: 838255497811163151, guid: 336b84d8b9b5243d69c2c564533bc1c3, type: 3}
+  rangeRecoilX: {x: 0, y: -10}
+  rangeRecoilY: {x: -5, y: 5}
+  rangeRecoilZ: {x: -5, y: 5}
+  singleFire: 0
+  ready: 0

@@ -20,6 +20,14 @@ public class Weapon : MonoBehaviour
     Camera camera;
     [HideInInspector]
     public float originalZoom;
+    public GameObject hitEffect;
+    //recoil
+    public Vector2 rangeRecoilX = new Vector2(0,10);
+    public Vector2 rangeRecoilY = new Vector2(0,10);
+    public Vector2 rangeRecoilZ = new Vector2(0,10);
+
+    public bool singleFire;
+    public bool ready;
 
 
     // Start is called before the first frame update

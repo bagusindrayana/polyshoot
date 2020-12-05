@@ -18,8 +18,7 @@ public class WeaponManager : MonoBehaviour
     Quaternion totalRecoil;
 
     Camera camera;
-   
-    
+    Weapon cw;
 
     void Start(){
     	camera = Camera.main;
@@ -36,15 +35,24 @@ public class WeaponManager : MonoBehaviour
     		selectWeapon(1);
     	}
 
-    	if(Input.GetButton("Fire1")){
+    	if(cw != null && ((Input.GetButton("Fire1") && !cw.singleFire) || (Input.GetButtonDown("Fire1") && cw.singleFire))){
     		fireWeapon();
+            
     	} else {
-            if(curWeapon != null){
-                curTime = curWeapon.GetComponent<Weapon>().fireDelay;
-                //handTransform.transform.localRotation = Quaternion.Lerp(handTransform.transform.localRotation,originalPos,Time.deltaTime*20f);
-            }
+            // if(curWeapon != null){
+            //     curTime = curWeapon.GetComponent<Weapon>().fireDelay;
+            //     //handTransform.transform.localRotation = Quaternion.Lerp(handTransform.transform.localRotation,originalPos,Time.deltaTime*20f);
+            // }
+
+            // if(curTime > 0){
+            //     curTime -= Time.deltaTime;
+            // }
     		
     	}
+
+        if(cw != null && curTime < cw.fireDelay){
+            curTime += Time.deltaTime;
+        }
 
     	if(Input.GetButtonDown("Fire2")){
     		if(curWeapon != null){
@@ -73,6 +81,7 @@ public class WeaponManager : MonoBehaviour
             if(ww.ammoText != null){
             	ww.ammoText.text = w.weaponAmmo.ToString();
             }
+            cw = ww;
     	}
     }
 
@@ -80,10 +89,10 @@ public class WeaponManager : MonoBehaviour
 
     //GameObject bullet;
     public void fireWeapon(){
-    	curTime += Time.deltaTime;
+    	
     	var mw = myWeapons[curIndex];
-        var w = curWeapon.GetComponent<Weapon>();
-    	if(curTime > w.fireDelay){
+        var w = cw;
+    	if(curTime >= w.fireDelay){
             
             
             if(mw.weaponAmmo > 0){
@@ -109,6 +118,8 @@ public class WeaponManager : MonoBehaviour
                     if(hit.transform.GetComponent<Rigidbody>()){
                         hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(1000f * w.firePoint.forward, hit.point);
                     }
+                    
+                    Instantiate(w.hitEffect,hit.point,Quaternion.LookRotation(hit.normal));
                     Destroy(b,0.1f);
                     
                 } else {
@@ -125,8 +136,9 @@ public class WeaponManager : MonoBehaviour
                 mw.weaponAmmo -= 1;
                 
                 //b.GetComponent<Rigidbody>().AddForce(0,0,100f);
-                curTime = 0;
+                
                 recoil += 0.1f;
+                curTime = 0f;
 
             }
     	}
@@ -141,11 +153,9 @@ public class WeaponManager : MonoBehaviour
 
 
     public void weaponRecoil(){
-        
-        
-
+        var w = cw;
         if(recoil > 0){
-            var r = new Vector3(UnityEngine.Random.Range(0,5f),UnityEngine.Random.Range(0,5f),UnityEngine.Random.Range(0,5f));
+            var r = new Vector3(UnityEngine.Random.Range(w.rangeRecoilX.x,w.rangeRecoilX.y),UnityEngine.Random.Range(w.rangeRecoilY.x,w.rangeRecoilY.y),UnityEngine.Random.Range(w.rangeRecoilZ.x,w.rangeRecoilZ.y));
             totalRecoil = Quaternion.Euler(r);
             handTransform.transform.localRotation = Quaternion.Lerp(handTransform.transform.localRotation,totalRecoil,Time.deltaTime*10f);
             recoil -= Time.deltaTime;

@@ -64,7 +64,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2895064947943234598, guid: 91940d376fb1442328f00a86d23808e6, type: 3}
-  - {fileID: -6478536213147159724, guid: 91940d376fb1442328f00a86d23808e6, type: 3}
+  - {fileID: 2100000, guid: d394a1f1cf69d4de194cec0c37cb5b4b, type: 2}
   - {fileID: 2100000, guid: 6bdf087a606214229b5e82ba13adca8f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -106,12 +106,18 @@ MonoBehaviour:
   aimPositionOffset: {x: 0, y: -0.08, z: 0.3}
   aimRotationOffset: {x: -90, y: 0, z: 0}
   bulletPrefab: {fileID: 6396148346967409838, guid: eb9ba7497587c46ef81a630b49588215, type: 3}
-  fireDelay: 0.2
+  fireDelay: 1
   weaponDamage: 10
   aim: 0
   aimZooom: 40
   ammoText: {fileID: 6482447665341276685}
   originalZoom: 0
+  hitEffect: {fileID: 838255497811163151, guid: 336b84d8b9b5243d69c2c564533bc1c3, type: 3}
+  rangeRecoilX: {x: 0, y: -10}
+  rangeRecoilY: {x: -5, y: 5}
+  rangeRecoilZ: {x: -5, y: 5}
+  singleFire: 1
+  ready: 0
 --- !u!1 &6482447664755429323
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,11 +291,11 @@ TextMesh:
   m_TabSize: 4
   m_FontSize: 100
   m_FontStyle: 0
-  m_RichText: 1
+  m_RichText: 0
   m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4294967215
+    rgba: 4294944329
 --- !u!1 &6482447665655303220
 GameObject:
   m_ObjectHideFlags: 0
