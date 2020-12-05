@@ -13,6 +13,10 @@ public class EnemyController : MonoBehaviour
     {
         if(agent != null){
             agent.stoppingDistance = attackDistance;
+        } 
+
+        if(target == null){
+            target = GameObject.FindGameObjectWithTag("Player").transform;
         }   
     }
 

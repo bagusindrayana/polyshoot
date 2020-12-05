@@ -227,7 +227,7 @@ MonoBehaviour:
   firePoint: {fileID: 1693174022880284530}
   positionOffset: {x: 0.035, y: -0.13, z: 0.06}
   rotationOffset: {x: -90, y: 0, z: 0}
-  aimPositionOffset: {x: 0, y: -0.11, z: 0}
+  aimPositionOffset: {x: 0, y: -0.12, z: -0.12}
   aimRotationOffset: {x: -90, y: 0, z: 0}
   bulletPrefab: {fileID: 1610861514682680803, guid: eb9ba7497587c46ef81a630b49588215, type: 3}
   bulletRigidBody: 0

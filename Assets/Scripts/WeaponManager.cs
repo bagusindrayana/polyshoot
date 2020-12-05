@@ -142,14 +142,15 @@ public class WeaponManager : MonoBehaviour
                     // b.transform.SetParent(handTransform);
                     if(w.bulletRigidBody){
                         b.GetComponent<Rigidbody>().AddForce(1000 * w.firePoint.forward);
+                        var bullet = b.GetComponent<Bullet>();
+                        bullet.bulletDamage = w.weaponDamage;
                     } else {
                         b.transform.SetParent(handTransform);
                         var lr = b.GetComponent<LineRenderer>();
                         lr.SetPosition(1,w.firePoint.forward * 100f);
                         Destroy(b,0.1f);
                     }
-                    // var bullet = b.GetComponent<Bullet>();
-                    // bullet.damage = w.weaponDamage;
+                    
                     
                     
                 }

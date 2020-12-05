@@ -12,12 +12,15 @@ public class EnemyWeapon : MonoBehaviour
 	public float fireDelay;
 	public Transform target;
 	public GameObject hitEffect;
+	public float weaponDamage;
 	float curTime;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(target == null){
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
     }
 
     // Update is called once per frame
@@ -51,9 +54,14 @@ public class EnemyWeapon : MonoBehaviour
                 lr.SetPosition(1,firePoint.forward * hit.distance);
 
 
+                if(hit.transform.tag == "Player" || hit.transform.tag == "Damageable"){
+                    hit.transform.SendMessage("ApplyDamage",weaponDamage);
+                }
                 if(hit.transform.GetComponent<Rigidbody>()){
                     hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(1000f * firePoint.forward, hit.point);
                 }
+
+
                 
                 var he = Instantiate(hitEffect,hit.point,Quaternion.LookRotation(hit.normal));
                 he.AddComponent<DestroyInSecond>();
