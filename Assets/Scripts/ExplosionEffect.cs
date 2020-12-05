@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,6 +27,8 @@ public class ExplosionEffect : MonoBehaviour
     		damagePoint -= dmg;
     	}
 
+    	explode();
+
     }
 
     void explode(){
@@ -33,16 +36,20 @@ public class ExplosionEffect : MonoBehaviour
     		if(explodeEffect != null){
     			Instantiate(explodeEffect,transform.position,Quaternion.identity);
     		}
-    		Vector3 epos = transform.position;
-			Collider[] cols = Physics.OverlapSphere(epos,radiusEffect);
-			foreach(Collider c in cols){
-				if(c.transform.tag == "Enemy" || c.transform.tag == "Damageable" || c.transform.tag == "Player"){
-	                c.transform.SendMessage("ApplyDamage",damageGiven);
-	            }
-				Rigidbody rb = c.GetComponent<Rigidbody>();
-				if(rb != null){
-					rb.AddExplosionForce(powerEffect,epos,radiusEffect,3f);
+    		try {
+    			Vector3 epos = transform.position;
+				Collider[] cols = Physics.OverlapSphere(epos,radiusEffect);
+				foreach(Collider c in cols){
+					if(c.transform.tag == "Enemy" || c.transform.tag == "Damageable" || c.transform.tag == "Player"){
+		                c.transform.SendMessage("ApplyDamage",damageGiven,SendMessageOptions.DontRequireReceiver);
+		            }
+					Rigidbody rb = c.GetComponent<Rigidbody>();
+					if(rb != null){
+						rb.AddExplosionForce(powerEffect,epos,radiusEffect,3f);
+					}
 				}
+			} catch(Exception e){
+				Debug.Log(e.ToString());
 			}
 
 			if(explodeEffect != null){
