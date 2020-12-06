@@ -36,38 +36,41 @@ public class EnemyWeapon : MonoBehaviour
 
     void fireWeapon(){
     	if(curTime >= fireDelay){
-    		GameObject sfx = new GameObject();
-            sfx.AddComponent<AudioSource>();
-            sfx.GetComponent<AudioSource>().clip = weaponSoundEffect;
-            sfx.transform.SetParent(transform);
-            sfx.GetComponent<AudioSource>().Play();
-            sfx.AddComponent<DestroyInSecond>();
-            sfx.GetComponent<DestroyInSecond>().timeToDestroy = 2f;
+    		
 
             RaycastHit hit;
             if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, 100f) && !bulletRigidBody)
             {
                 // Debug.DrawRay(curWeapon.weapon.firePoint.position, curWeapon.weapon.firePoint.forward * hit.distance, Color.yellow);
-                var b = Instantiate(bulletPrefab,firePoint.position,Quaternion.identity);
-                b.transform.SetParent(transform);
-                var lr = b.GetComponent<LineRenderer>();
-                lr.SetPosition(1,firePoint.forward * hit.distance);
+                if(hit.transform == target){
+                    GameObject sfx = new GameObject();
+                    sfx.AddComponent<AudioSource>();
+                    sfx.GetComponent<AudioSource>().clip = weaponSoundEffect;
+                    sfx.transform.SetParent(transform);
+                    sfx.GetComponent<AudioSource>().Play();
+                    sfx.AddComponent<DestroyInSecond>();
+                    sfx.GetComponent<DestroyInSecond>().timeToDestroy = 2f;
+                    var b = Instantiate(bulletPrefab,firePoint.position,Quaternion.identity);
+                    b.transform.SetParent(transform);
+                    var lr = b.GetComponent<LineRenderer>();
+                    lr.SetPosition(1,firePoint.forward * hit.distance);
 
 
-                if(hit.transform.tag == "Player" || hit.transform.tag == "Damageable"){
-                    hit.transform.SendMessage("ApplyDamage",weaponDamage);
+                    if(hit.transform.tag == "Player" || hit.transform.tag == "Damageable"){
+                        hit.transform.SendMessage("ApplyDamage",weaponDamage);
+                    }
+                    if(hit.transform.GetComponent<Rigidbody>()){
+                        hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(1000f * firePoint.forward, hit.point);
+                    }
+
+
+                    
+                    var he = Instantiate(hitEffect,hit.point,Quaternion.LookRotation(hit.normal));
+                    he.AddComponent<DestroyInSecond>();
+                    he.GetComponent<DestroyInSecond>().timeToDestroy = 2f;
+
+                    Destroy(b,0.1f);
                 }
-                if(hit.transform.GetComponent<Rigidbody>()){
-                    hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(1000f * firePoint.forward, hit.point);
-                }
-
-
-                
-                var he = Instantiate(hitEffect,hit.point,Quaternion.LookRotation(hit.normal));
-                he.AddComponent<DestroyInSecond>();
-                he.GetComponent<DestroyInSecond>().timeToDestroy = 2f;
-
-                Destroy(b,0.1f);
                 
             } 
             // else {

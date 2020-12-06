@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
-{
+{   
+    public List<Weapon> weapons;
     public Transform handTransform;
     public List<MyWeapon> myWeapons;
     
@@ -74,7 +75,9 @@ public class WeaponManager : MonoBehaviour
     }
 
     public void selectWeapon(int index){
-
+        if(index > myWeapons.Count - 1){
+            return;
+        }
     	curIndex = index;
     	MyWeapon w = myWeapons[index];
     	if(curWeapon == null || w.weapon.weaponName != curWeapon.GetComponent<Weapon>().weaponName){
@@ -91,7 +94,14 @@ public class WeaponManager : MonoBehaviour
             	ww.ammoText.text = w.weaponAmmo.ToString();
             }
             cw = ww;
-    	}
+    	} else if(w.weapon.weaponName == curWeapon.GetComponent<Weapon>().weaponName){
+            var ww = curWeapon.GetComponent<Weapon>();
+            if(ww.ammoText != null){
+            	ww.ammoText.text = w.weaponAmmo.ToString();
+            }
+        }
+
+        
     }
 
 
@@ -204,6 +214,20 @@ public class WeaponManager : MonoBehaviour
     }
 
 
+    public void giveWeapon(int i,int val){
+        var w = weapons[i];
+        foreach (var ww in myWeapons)
+        {
+            if(ww.weapon.weaponName == w.weaponName){
+                ww.weaponAmmo += val;
+                return;
+            }
+        }
+        myWeapons.Add(new MyWeapon(w,val));
+        selectWeapon(i);
+    }
+
+
 
 
 }
@@ -216,6 +240,11 @@ public class MyWeapon
 {
 	public Weapon weapon;
 	public int weaponAmmo;
+
+    public MyWeapon(Weapon w,int wa){
+        weapon = w;
+        weaponAmmo = wa;
+    }
 }
 
 

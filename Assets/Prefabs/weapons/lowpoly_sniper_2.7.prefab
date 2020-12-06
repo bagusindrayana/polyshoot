@@ -109,7 +109,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1610861514682680803, guid: f56b5f6db18825a9dac21c02795f1495, type: 3}
   bulletRigidBody: 0
   fireDelay: 1
-  weaponDamage: 10
+  weaponDamage: 100
   aim: 0
   aimZooom: 40
   ammoText: {fileID: 7914366427432284894}

@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
 	public Transform target;
     public Animator animator;
     public float attackDistance = 10f;
+    public float detectRange = 20f;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,11 +31,16 @@ public class EnemyController : MonoBehaviour
         if(dist <= attackDistance){
             if(animator != null){
                 animator.SetBool("walk",false);
+                agent.Stop();
             }
-        } else {
+        } else if(dist <= detectRange) {
             if(animator != null){
                 animator.SetBool("walk",true);
+                agent.Resume();
             }
+        } else {
+            animator.SetBool("walk",false);
+            agent.Stop();
         }
     }
 }

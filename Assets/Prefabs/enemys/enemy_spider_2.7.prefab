@@ -3325,6 +3325,7 @@ MonoBehaviour:
   target: {fileID: 0}
   animator: {fileID: 9114885143037108625}
   attackDistance: 10
+  detectRange: 20
 --- !u!114 &9114885143037108628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3358,7 +3359,7 @@ MonoBehaviour:
   fireDelay: 0.5
   target: {fileID: 0}
   hitEffect: {fileID: 838255497811163151, guid: 336b84d8b9b5243d69c2c564533bc1c3, type: 3}
-  weaponDamage: 0
+  weaponDamage: 5
 --- !u!1 &8543164687516182425
 GameObject:
   m_ObjectHideFlags: 0
