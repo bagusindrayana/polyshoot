@@ -31,15 +31,19 @@ public class EnemyController : MonoBehaviour
         if(dist <= attackDistance){
             if(animator != null){
                 animator.SetBool("walk",false);
-                agent.Stop();
+                
             }
+            agent.Stop();
         } else if(dist <= detectRange) {
             if(animator != null){
                 animator.SetBool("walk",true);
-                agent.Resume();
+                
             }
+            agent.Resume();
         } else {
-            animator.SetBool("walk",false);
+            if(animator != null){
+                animator.SetBool("walk",false);
+            }
             agent.Stop();
         }
     }

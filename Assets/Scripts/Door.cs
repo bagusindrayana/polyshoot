@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Door : MonoBehaviour
 {   
@@ -13,6 +14,10 @@ public class Door : MonoBehaviour
     public AudioClip openSound;
     public AudioClip closeSound;
     float  c;
+
+    public UnityEvent doorOpen;
+    public UnityEvent doorClose;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,9 +44,11 @@ public class Door : MonoBehaviour
         if(open){
             audioSource.clip = openSound;
             audioSource.Play();
+            doorOpen.Invoke();
         } else {
             audioSource.clip = closeSound;
-                audioSource.Play();
+            audioSource.Play();
+            doorClose.Invoke();
         }
         c = 0f;
     }
