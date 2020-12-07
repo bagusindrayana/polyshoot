@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class PlayerStatus : MonoBehaviour
 {	
@@ -10,6 +11,7 @@ public class PlayerStatus : MonoBehaviour
     public Vector2 rangeShakeY = new Vector2(0,10);
     public Vector2 rangeShakeZ = new Vector2(0,10);
     public Slider healthBar;
+    public UnityEvent playerDead;
     float shake;
     Quaternion originalPos;
     Quaternion totalShake;
@@ -32,6 +34,9 @@ public class PlayerStatus : MonoBehaviour
     public void ApplyDamage(float dmg){
     	playerHealth -= dmg;
         shake += 0.1f;
+        if(playerHealth <= 0){
+            playerDead.Invoke();
+        }
     }
 
     
