@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 [RequireComponent(typeof(CharacterController))]
 
@@ -21,13 +23,15 @@ public class PlayerController : MonoBehaviour
 
     public PlayerStatus playerStatus;
     public WeaponManager weaponManager;
-    public Text info;
+    public TextMeshProUGUI info;
     public AudioSource audioSource;
     public AudioClip interactSound;
+    public AudioClip footStepSound;
 
     [HideInInspector]
     public bool canMove = true;
 
+    float walkTime;
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -48,6 +52,17 @@ public class PlayerController : MonoBehaviour
         float curSpeedY = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal") : 0;
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+
+        // if(curSpeedX != 0 || curSpeedY != 0){
+        //     walkTime += Time.deltaTime;
+        // } else {
+        //      walkTime = 0f;
+        // }
+
+        // if(walkTime >= (isRunning ? 0.2f : 0.5f)){
+        //     playFootStepSound();
+        //     walkTime = 0f;
+        // }
 
         if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
         {
@@ -78,10 +93,9 @@ public class PlayerController : MonoBehaviour
 
     void Interact(){
         RaycastHit hit;
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit,5f))
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit,2.5f))
         {
             if(hit.transform.tag == "Item"){
-                //Debug.Log("Item");
                 var i = hit.transform.GetComponent<Item>();
                 if(i){
                     if(info != null){
@@ -143,5 +157,16 @@ public class PlayerController : MonoBehaviour
                 info.text = "";
             }
         }
+    }
+
+    public void playFootStepSound(){
+        GameObject sfx = new GameObject();
+        sfx.AddComponent<AudioSource>();
+        sfx.GetComponent<AudioSource>().clip = footStepSound;
+        sfx.GetComponent<AudioSource>().volume = 0.5f;
+        sfx.transform.SetParent(transform);
+        sfx.GetComponent<AudioSource>().Play();
+        sfx.AddComponent<DestroyInSecond>();
+        sfx.GetComponent<DestroyInSecond>().timeToDestroy = 2f;
     }
 }

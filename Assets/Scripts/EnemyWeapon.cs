@@ -13,11 +13,14 @@ public class EnemyWeapon : MonoBehaviour
 	public Transform target;
 	public GameObject hitEffect;
 	public float weaponDamage;
+    public EnemyController ec;
 	float curTime;
+    float attackTime;
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
+        attackTime = 0f;
         if(target == null){
             target = GameObject.FindGameObjectWithTag("Player").transform;
         }
@@ -33,16 +36,18 @@ public class EnemyWeapon : MonoBehaviour
 
         fireWeapon();
     }
-
+    
     void fireWeapon(){
     	if(curTime >= fireDelay){
     		
-
+            
+                
             RaycastHit hit;
             if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, 100f) && !bulletRigidBody)
             {
-                // Debug.DrawRay(curWeapon.weapon.firePoint.position, curWeapon.weapon.firePoint.forward * hit.distance, Color.yellow);
+                
                 if(hit.transform == target){
+                    Debug.DrawRay(firePoint.position, firePoint.forward * hit.distance, Color.yellow);
                     GameObject sfx = new GameObject();
                     sfx.AddComponent<AudioSource>();
                     sfx.GetComponent<AudioSource>().clip = weaponSoundEffect;
@@ -70,21 +75,40 @@ public class EnemyWeapon : MonoBehaviour
                     he.GetComponent<DestroyInSecond>().timeToDestroy = 2f;
 
                     Destroy(b,0.1f);
+                    attackTime = 0f;
+                    ec.seeTarget = true;
+                } else {
+                    ec.seeTarget = false;
                 }
                 
             } 
-            // else {
-            //     var b = Instantiate(bulletPrefab,firePoint.position,Quaternion.identity);
-            //     if(bulletRigidBody){
-            //         b.GetComponent<Rigidbody>().AddForce(1000 * firePoint.forward);
-            //     } else {
-            //         b.transform.SetParent(transform);
-            //         var lr = b.GetComponent<LineRenderer>();
-            //         lr.SetPosition(1,firePoint.forward * 100f);
-            //         Destroy(b,0.1f);
-            //     }
+            else {
+                if(attackTime < 2f){
+                    GameObject sfx = new GameObject();
+                    sfx.AddComponent<AudioSource>();
+                    sfx.GetComponent<AudioSource>().clip = weaponSoundEffect;
+                    sfx.transform.SetParent(transform);
+                    sfx.GetComponent<AudioSource>().Play();
+                    sfx.AddComponent<DestroyInSecond>();
+                    sfx.GetComponent<DestroyInSecond>().timeToDestroy = 2f;
+                    var b = Instantiate(bulletPrefab,firePoint.position,Quaternion.identity);
+                    if(bulletRigidBody){
+                        b.GetComponent<Rigidbody>().AddForce(1000 * firePoint.forward);
+                    } else {
+                        b.transform.SetParent(transform);
+                        var lr = b.GetComponent<LineRenderer>();
+                        lr.SetPosition(1,firePoint.forward * 100f);
+                        Destroy(b,0.1f);
+                    }
+                    attackTime += Time.deltaTime;
+                    
+                }
+                ec.seeTarget = false;
+               
+            }
+
                 
-            // }
+            
             
             curTime = 0f;
     	}

@@ -127,7 +127,6 @@ public class WeaponManager : MonoBehaviour
                 if (Physics.Raycast(w.firePoint.position, w.firePoint.forward, out hit, 100f) && !w.bulletRigidBody)
                 {
                     // Debug.DrawRay(curWeapon.weapon.firePoint.position, curWeapon.weapon.firePoint.forward * hit.distance, Color.yellow);
-                    // Debug.Log("Did Hit");
                     var b = Instantiate(w.bulletPrefab,w.firePoint.position,Quaternion.identity);
                     b.transform.SetParent(handTransform);
                     var lr = b.GetComponent<LineRenderer>();
@@ -220,12 +219,27 @@ public class WeaponManager : MonoBehaviour
         {
             if(ww.weapon.weaponName == w.weaponName){
                 ww.weaponAmmo += val;
+                if(ww.weapon.ammoText != null){
+                    ww.weapon.ammoText.text = ww.weaponAmmo.ToString();
+                }
                 return;
             }
         }
         myWeapons.Add(new MyWeapon(w,val));
         selectWeapon(i);
     }
+
+    public int findWeaponByName(string name){
+        for (int i = 0; i < myWeapons.Count; i++)
+        {
+            var mw = myWeapons[i];
+            if(name == mw.weapon.weaponName){
+                return i;
+            }
+        }
+
+        return -1;
+    }   
 
 
 
