@@ -14,6 +14,7 @@ public class EnemyWeapon : MonoBehaviour
 	public GameObject hitEffect;
 	public float weaponDamage;
     public EnemyController ec;
+    public Vector3 rotOffset = new Vector3(-90,0,0);
 	float curTime;
     float attackTime;
 
@@ -30,7 +31,7 @@ public class EnemyWeapon : MonoBehaviour
     void Update()
     {
         Vector3 newVec = (target.position - transform.position);
-        Quaternion targetRot = Quaternion.LookRotation(newVec) * Quaternion.Euler(-90,0,0);
+        Quaternion targetRot = Quaternion.LookRotation(newVec) * Quaternion.Euler(rotOffset);
         transform.rotation = Quaternion.Slerp(transform.rotation,targetRot,2f * Time.deltaTime) ;
         curTime += Time.deltaTime;
 
@@ -62,7 +63,7 @@ public class EnemyWeapon : MonoBehaviour
 
 
                     if(hit.transform.tag == "Player" || hit.transform.tag == "Damageable"){
-                        hit.transform.SendMessage("ApplyDamage",weaponDamage);
+                        hit.transform.SendMessage("ApplyDamage",weaponDamage,SendMessageOptions.DontRequireReceiver);
                     }
                     if(hit.transform.GetComponent<Rigidbody>()){
                         hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(1000f * firePoint.forward, hit.point);

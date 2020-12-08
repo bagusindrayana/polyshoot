@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip interactSound;
     public AudioClip footStepSound;
+    Vector3 hitNormal;
 
     [HideInInspector]
     public bool canMove = true;
@@ -64,7 +65,7 @@ public class PlayerController : MonoBehaviour
         //     walkTime = 0f;
         // }
 
-        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
+        if (Input.GetButton("Jump") && canMove && characterController.isGrounded && (Vector3.Angle (Vector3.up, hitNormal) <= characterController.slopeLimit))
         {
             moveDirection.y = jumpSpeed;
         }
@@ -89,6 +90,10 @@ public class PlayerController : MonoBehaviour
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
         Interact();
+    }
+
+    void OnControllerColliderHit (ControllerColliderHit hit) {
+        hitNormal = hit.normal;
     }
 
     void Interact(){

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657934, g: 0.4964136, b: 0.5748188, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7225,7 +7225,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4566550617923732144, guid: 7d8efa70368d34195a35c13099bd1946, type: 3}
       propertyPath: doorOpen.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4566550617923732144, guid: 7d8efa70368d34195a35c13099bd1946, type: 3}
       propertyPath: doorOpen.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -7241,7 +7241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4566550617923732144, guid: 7d8efa70368d34195a35c13099bd1946, type: 3}
       propertyPath: doorOpen.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenNextLevel
+      value: saveGame
       objectReference: {fileID: 0}
     - target: {fileID: 4566550617923732144, guid: 7d8efa70368d34195a35c13099bd1946, type: 3}
       propertyPath: doorOpen.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -7249,6 +7249,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4566550617923732144, guid: 7d8efa70368d34195a35c13099bd1946, type: 3}
       propertyPath: doorOpen.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566550617923732144, guid: 7d8efa70368d34195a35c13099bd1946, type: 3}
+      propertyPath: doorOpen.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566550617923732144, guid: 7d8efa70368d34195a35c13099bd1946, type: 3}
+      propertyPath: doorOpen.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566550617923732144, guid: 7d8efa70368d34195a35c13099bd1946, type: 3}
+      propertyPath: doorOpen.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566550617923732144, guid: 7d8efa70368d34195a35c13099bd1946, type: 3}
+      propertyPath: doorOpen.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1902085732}
+    - target: {fileID: 4566550617923732144, guid: 7d8efa70368d34195a35c13099bd1946, type: 3}
+      propertyPath: doorOpen.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OpenNextLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566550617923732144, guid: 7d8efa70368d34195a35c13099bd1946, type: 3}
+      propertyPath: doorOpen.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4566550618120436192, guid: 7d8efa70368d34195a35c13099bd1946, type: 3}
@@ -21341,6 +21365,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6035982488565982984, guid: b0b991df585c146e194ce6dfc3dda266, type: 3}
+      propertyPath: myWeapons.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6035982488565982984, guid: b0b991df585c146e194ce6dfc3dda266, type: 3}
+      propertyPath: myWeapons.Array.data[1].weaponAmmo
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6035982488565982984, guid: b0b991df585c146e194ce6dfc3dda266, type: 3}
+      propertyPath: myWeapons.Array.data[0].weaponAmmo
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6035982488565982984, guid: b0b991df585c146e194ce6dfc3dda266, type: 3}
+      propertyPath: myWeapons.Array.data[1].weapon
+      value: 
+      objectReference: {fileID: 3806734199212189083, guid: 3618090e459f6ddd2b547ba7b6063cea, type: 3}
+    - target: {fileID: 6035982488565982984, guid: b0b991df585c146e194ce6dfc3dda266, type: 3}
+      propertyPath: myWeapons.Array.data[0].weapon
+      value: 
+      objectReference: {fileID: 289637815598891553, guid: 50052b30fefcfcdaaad0e2d5a23524f2, type: 3}
     - target: {fileID: 6035982488565982987, guid: b0b991df585c146e194ce6dfc3dda266, type: 3}
       propertyPath: healthBar
       value: 

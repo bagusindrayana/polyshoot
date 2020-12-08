@@ -34,7 +34,9 @@ public class WeaponManager : MonoBehaviour
     		if(curIndex >= myWeapons.Count){
     			curIndex = 0;
     		}
-    		selectWeapon(curIndex);
+    		if(myWeapons.Count > 0){
+                selectWeapon(curIndex);
+            }
     	}
 
     	if(Input.GetAxis("Mouse ScrollWheel") < 0){
@@ -42,7 +44,10 @@ public class WeaponManager : MonoBehaviour
     		if(curIndex < 0){
     			curIndex = myWeapons.Count - 1;
     		}
-    		selectWeapon(curIndex);
+            if(myWeapons.Count > 0){
+                selectWeapon(curIndex);
+            }
+    		
     	}
 
     	if(cw != null && ((Input.GetButton("Fire1") && !cw.singleFire) || (Input.GetButtonDown("Fire1") && cw.singleFire))){
@@ -138,7 +143,8 @@ public class WeaponManager : MonoBehaviour
                     }
 
                     if(hit.transform.tag == "Enemy" || hit.transform.tag == "Damageable"){
-                        hit.transform.SendMessage("ApplyDamage",w.weaponDamage);
+                        hit.transform.SendMessage("ApplyDamage",w.weaponDamage,SendMessageOptions.DontRequireReceiver);
+                        hit.transform.SendMessageUpwards("ApplyDamage",w.weaponDamage,SendMessageOptions.DontRequireReceiver);
                     }
                     
                     var he = Instantiate(w.hitEffect,hit.point,Quaternion.LookRotation(hit.normal));
@@ -219,21 +225,21 @@ public class WeaponManager : MonoBehaviour
         {
             if(ww.weapon.weaponName == w.weaponName){
                 ww.weaponAmmo += val;
-                if(ww.weapon.ammoText != null){
-                    ww.weapon.ammoText.text = ww.weaponAmmo.ToString();
+                if(ww.weapon.weaponName == curWeapon.GetComponent<Weapon>().weaponName){
+                    curWeapon.GetComponent<Weapon>().ammoText.text = ww.weaponAmmo.ToString();
                 }
                 return;
             }
         }
         myWeapons.Add(new MyWeapon(w,val));
-        selectWeapon(i);
+        
     }
 
     public int findWeaponByName(string name){
-        for (int i = 0; i < myWeapons.Count; i++)
+        for (int i = 0; i < weapons.Count; i++)
         {
-            var mw = myWeapons[i];
-            if(name == mw.weapon.weaponName){
+            var mw = weapons[i];
+            if(name == mw.weaponName){
                 return i;
             }
         }

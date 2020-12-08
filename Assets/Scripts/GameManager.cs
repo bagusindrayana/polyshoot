@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         loadGame();
+        //saveGame();
     }
 
     // Update is called once per frame
@@ -43,21 +44,20 @@ public class GameManager : MonoBehaviour
     }
 
     public void saveGame(){
-        var weapons = new string[weaponManager.myWeapons.Count];
+        string[] weapons = new string[weaponManager.myWeapons.Count];
         for (int i = 0; i < weaponManager.myWeapons.Count; i++)
         {
             var mw = weaponManager.myWeapons[i];
             weapons[i] = mw.weapon.weaponName+"|"+mw.weaponAmmo;
         }
-        
-        PlayerPrefsX.SetStringArray ("MyWeapons", weapons);
-
+        PlayerPrefsX.SetStringArray ("MyWeapons",weapons);
         saveInt("PlayerHealth",(int)playerStatus.playerHealth);
-
+        
     }
 
     public void loadGame(){
         var weapons = PlayerPrefsX.GetStringArray ("MyWeapons");
+        
         for (int i = 0; i < weapons.Length; i++)
         {
             string[] s = ((string)weapons[i]).Split(char.Parse("|"));
@@ -66,7 +66,6 @@ public class GameManager : MonoBehaviour
                 weaponManager.giveWeapon((int)wi,int.Parse(s[1]));
             }
         }
-        
         playerStatus.playerHealth = (float)PlayerPrefs.GetInt("PlayerHealth",100);
     }
 }

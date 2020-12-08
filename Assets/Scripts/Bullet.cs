@@ -35,7 +35,8 @@ public class Bullet : MonoBehaviour
 		Collider[] cols = Physics.OverlapSphere(epos,radiusEffect);
 		foreach(Collider c in cols){
             if(c.transform.tag == "Enemy" || c.transform.tag == "Damageable"){
-                c.transform.SendMessage("ApplyDamage",bulletDamage);
+                c.transform.SendMessage("ApplyDamage",bulletDamage,SendMessageOptions.DontRequireReceiver);
+                c.transform.SendMessageUpwards("ApplyDamage",bulletDamage,SendMessageOptions.DontRequireReceiver);
             }
             
 			Rigidbody rb = c.GetComponent<Rigidbody>();
