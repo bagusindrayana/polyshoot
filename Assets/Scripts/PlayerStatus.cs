@@ -36,6 +36,8 @@ public class PlayerStatus : MonoBehaviour
         shake += 0.1f;
         if(playerHealth <= 0){
             playerDead.Invoke();
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 

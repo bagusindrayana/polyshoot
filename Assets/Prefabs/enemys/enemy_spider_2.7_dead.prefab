@@ -2317,6 +2317,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radiusEffect: 10
   powerEffect: 500
+  damagePoint: 0
+  damageGiven: 0
+  explodeEffect: {fileID: 0}
+  boom: 0
 --- !u!1 &7290804799931395265
 GameObject:
   m_ObjectHideFlags: 0
@@ -3118,6 +3122,10 @@ PrefabInstance:
     - target: {fileID: 1735024089641582, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
       propertyPath: m_Name
       value: Steam
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735024089641582, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4221402037530588, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
       propertyPath: m_RootOrder
