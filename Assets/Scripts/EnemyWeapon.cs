@@ -39,12 +39,13 @@ public class EnemyWeapon : MonoBehaviour
     }
     
     void fireWeapon(){
-    	if(curTime >= fireDelay){
+        float dist = Vector3.Distance(transform.position,target.position);
+    	if(curTime >= fireDelay && dist <= ec.attackDistance){
     		
             
                 
             RaycastHit hit;
-            if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, 100f) && !bulletRigidBody)
+            if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, ec.attackDistance) && !bulletRigidBody)
             {
                 
                 if(hit.transform == target){

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyController : MonoBehaviour
 {	
@@ -11,6 +12,8 @@ public class EnemyController : MonoBehaviour
     public float detectRange = 20f;
     public bool seeTarget;
     public AudioClip walkSound;
+    public UnityEvent enemyMove;
+    public UnityEvent enemyIdle;
 
 
     void Start()
@@ -37,6 +40,7 @@ public class EnemyController : MonoBehaviour
                 animator.SetBool("walk",false);
                 
             }
+            enemyIdle.Invoke();
             agent.Stop();
         }
         else if(!seeTarget && CanNavigateToPoint(target.position)){
@@ -44,6 +48,7 @@ public class EnemyController : MonoBehaviour
                 animator.SetBool("walk",true);
                 
             }
+            enemyMove.Invoke();
             agent.Resume();
         }
         else if(dist <= attackDistance){
@@ -51,6 +56,7 @@ public class EnemyController : MonoBehaviour
                 animator.SetBool("walk",false);
                 
             }
+            enemyIdle.Invoke();
             agent.Stop();
         } 
         else if(dist <= detectRange) {
@@ -59,12 +65,14 @@ public class EnemyController : MonoBehaviour
                 
             }
             agent.Resume();
+            enemyMove.Invoke();
         } 
         
         else {
             if(animator != null){
                 animator.SetBool("walk",false);
             }
+            enemyIdle.Invoke();
             agent.Stop();
         }
     }

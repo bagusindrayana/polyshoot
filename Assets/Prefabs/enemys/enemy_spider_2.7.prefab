@@ -3324,8 +3324,8 @@ MonoBehaviour:
   agent: {fileID: 9114885143037108631}
   target: {fileID: 0}
   animator: {fileID: 9114885143037108625}
-  attackDistance: 10
-  detectRange: 20
+  attackDistance: 15
+  detectRange: 15
   seeTarget: 0
   walkSound: {fileID: 8300000, guid: df9fac6dd994f9c45ad2698be718771f, type: 3}
 --- !u!114 &9114885143037108628
@@ -3361,7 +3361,7 @@ MonoBehaviour:
   fireDelay: 0.5
   target: {fileID: 0}
   hitEffect: {fileID: 838255497811163151, guid: 336b84d8b9b5243d69c2c564533bc1c3, type: 3}
-  weaponDamage: 5
+  weaponDamage: 2
   ec: {fileID: 9114885143037108630}
   rotOffset: {x: -90, y: 0, z: 0}
 --- !u!1 &8543164687516182425
