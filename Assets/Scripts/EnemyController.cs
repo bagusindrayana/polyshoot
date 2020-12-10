@@ -51,6 +51,14 @@ public class EnemyController : MonoBehaviour
             enemyMove.Invoke();
             agent.Resume();
         }
+        else if(seeTarget && CanNavigateToPoint(target.position) && dist > attackDistance){
+            if(animator != null){
+                animator.SetBool("walk",true);
+                
+            }
+            enemyMove.Invoke();
+            agent.Resume();
+        }
         else if(dist <= attackDistance){
             if(animator != null){
                 animator.SetBool("walk",false);

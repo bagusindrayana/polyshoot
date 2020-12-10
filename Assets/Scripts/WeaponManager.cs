@@ -235,6 +235,24 @@ public class WeaponManager : MonoBehaviour
         
     }
 
+    public bool giveWeaponAmmo(int i,int val){
+        var w = weapons[i];
+        foreach (var ww in myWeapons)
+        {
+            if(ww.weapon.weaponName == w.weaponName){
+                ww.weaponAmmo += val;
+                if(curWeapon.GetComponent<Weapon>() != null && ww.weapon.weaponName == curWeapon.GetComponent<Weapon>().weaponName){
+                    curWeapon.GetComponent<Weapon>().ammoText.text = ww.weaponAmmo.ToString();
+                }
+                return true;
+            }
+        }
+
+        return false;
+       
+        
+    }
+
     public int findWeaponByName(string name){
         for (int i = 0; i < weapons.Count; i++)
         {

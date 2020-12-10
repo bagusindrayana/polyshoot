@@ -30,5 +30,6 @@ public class Item : MonoBehaviour
 [Serializable]
 public enum ItemType {
     Weapon,
+    WeaponAmmo,
     Item
 }

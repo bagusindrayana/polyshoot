@@ -135,7 +135,7 @@ MonoBehaviour:
   aimRotationOffset: {x: -90, y: 0, z: 0}
   bulletPrefab: {fileID: 2294149679903955775, guid: fb345c1e2008df56d8a75e7cc1696003, type: 3}
   bulletRigidBody: 1
-  fireDelay: 0.2
+  fireDelay: 1
   weaponDamage: 100
   aim: 0
   aimZooom: 50

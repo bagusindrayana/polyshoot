@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2574147787772995509}
   - component: {fileID: 670802208543383923}
   - component: {fileID: 1169718644160564693}
+  - component: {fileID: 5915178532636367145}
   m_Layer: 0
   m_Name: lowpoly_launcher_item
   m_TagString: Item
@@ -132,3 +133,17 @@ MonoBehaviour:
   index: 3
   type: 0
   value: 5
+--- !u!136 &5915178532636367145
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4922034374365806475}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.03
+  m_Height: 0.11
+  m_Direction: 1
+  m_Center: {x: -0.000040827796, y: -0.011891734, z: -0.004917617}
