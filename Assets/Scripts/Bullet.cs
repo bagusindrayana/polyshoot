@@ -34,14 +34,15 @@ public class Bullet : MonoBehaviour
     	Vector3 epos = transform.position;
 		Collider[] cols = Physics.OverlapSphere(epos,radiusEffect);
 		foreach(Collider c in cols){
-            if(c.transform.tag == "Enemy" || c.transform.tag == "Damageable"){
-                c.transform.SendMessage("ApplyDamage",bulletDamage,SendMessageOptions.DontRequireReceiver);
-                c.transform.SendMessageUpwards("ApplyDamage",bulletDamage,SendMessageOptions.DontRequireReceiver);
+            int dist = (int)Vector3.Distance(transform.position,c.transform.position);
+            if(c.transform.tag == "Enemy" || c.transform.tag == "Damageable" || c.transform.tag == "Player"){
+                c.transform.SendMessage("ApplyDamage",bulletDamage - (dist * 10),SendMessageOptions.DontRequireReceiver);
+                c.transform.SendMessageUpwards("ApplyDamage",bulletDamage - (dist * 10),SendMessageOptions.DontRequireReceiver);
             }
             
 			Rigidbody rb = c.GetComponent<Rigidbody>();
 			if(rb != null && rb != myRb){
-				rb.AddExplosionForce(powerEffect,epos,radiusEffect,3f);
+				rb.AddExplosionForce(powerEffect - (dist * 100),epos,radiusEffect,3f);
 			}
 
             

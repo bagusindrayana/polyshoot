@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class Door : MonoBehaviour
 {   
 
+    public bool interactable = true;
     public Transform door;
     public Vector3 openPos;
     public Vector3 closePos;
@@ -40,16 +41,28 @@ public class Door : MonoBehaviour
     }
 
     public void InteractDoor(){
+        if(!interactable){
+            return;
+        }
         open = !open;
         if(open){
-            audioSource.clip = openSound;
-            audioSource.Play();
+            if(audioSource != null && openSound != null){
+                audioSource.clip = openSound;
+                audioSource.Play();
+            }
             doorOpen.Invoke();
         } else {
-            audioSource.clip = closeSound;
-            audioSource.Play();
+            if(audioSource != null && closeSound != null){
+                audioSource.clip = closeSound;
+                audioSource.Play();
+            }
             doorClose.Invoke();
         }
+        c = 0f;
+    }
+
+    public void LockDoor(){
+        interactable = false;
         c = 0f;
     }
 
