@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -10,9 +11,12 @@ public class GameManager : MonoBehaviour
     public string nextLevel;
     public WeaponManager weaponManager;
     public PlayerStatus playerStatus;
+    public UnityEvent onInit;
 
     void Start()
-    {
+    {   
+        PlayerPrefs.SetString("LEVEL",currentLevel);
+        onInit.Invoke();
         loadGame();
         //saveGame();
     }
@@ -67,5 +71,15 @@ public class GameManager : MonoBehaviour
             }
         }
         playerStatus.playerHealth = (float)PlayerPrefs.GetInt("PlayerHealth",100);
+    }
+
+    public void resetData(){
+        PlayerPrefs.SetString("LEVEL",null);
+        PlayerPrefs.SetInt("PlayerHealth",100);
+        PlayerPrefsX.SetStringArray ("MyWeapons",new string[0]);
+    }
+
+    public void exitGame(){
+        Application.Quit();
     }
 }

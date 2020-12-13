@@ -126,6 +126,12 @@ public class PlayerController : MonoBehaviour
                                 weaponManager.giveWeapon(i.index,i.value);
                                 Destroy(hit.transform.gameObject);
                                 break;
+                            case ItemType.WeaponAmmo:
+                                var ok = weaponManager.giveWeaponAmmo(i.index,i.value);
+                                if(ok){
+                                    Destroy(hit.transform.gameObject);
+                                }
+                                break;
                             default:
                                 break;
                         }

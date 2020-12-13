@@ -51,6 +51,14 @@ public class EnemyController : MonoBehaviour
             enemyMove.Invoke();
             agent.Resume();
         }
+        else if(seeTarget && CanNavigateToPoint(target.position) && dist > attackDistance){
+            if(animator != null){
+                animator.SetBool("walk",true);
+                
+            }
+            enemyMove.Invoke();
+            agent.Resume();
+        }
         else if(dist <= attackDistance){
             if(animator != null){
                 animator.SetBool("walk",false);
@@ -90,10 +98,12 @@ public class EnemyController : MonoBehaviour
     public void playWalkSound(){
         GameObject sfx = new GameObject();
         sfx.AddComponent<AudioSource>();
-        sfx.GetComponent<AudioSource>().clip = walkSound;
-        sfx.GetComponent<AudioSource>().volume = 0.2f;
+        var a_sfx = sfx.GetComponent<AudioSource>();
+        a_sfx.clip = walkSound;
+        a_sfx.maxDistance = 25f;
+        a_sfx.volume = 0.2f;
         sfx.transform.SetParent(transform);
-        sfx.GetComponent<AudioSource>().Play();
+        a_sfx.Play();
         sfx.AddComponent<DestroyInSecond>();
         sfx.GetComponent<DestroyInSecond>().timeToDestroy = 2f;
     }

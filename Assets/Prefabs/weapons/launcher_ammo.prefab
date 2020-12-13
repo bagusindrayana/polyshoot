@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4900110389139678022
+--- !u!1 &7403485297501053537
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5713766944938621436}
-  - component: {fileID: 8711293558295918169}
-  - component: {fileID: 6845555133228548755}
-  - component: {fileID: 3431042990278406446}
-  - component: {fileID: 4658729675964732228}
-  - component: {fileID: 5996416434720390579}
-  - component: {fileID: 3798434012647695336}
+  - component: {fileID: 7723490316942228054}
+  - component: {fileID: 4523206082859714053}
+  - component: {fileID: 2583545607335055517}
+  - component: {fileID: 4362218999525629396}
+  - component: {fileID: 3356472964252048806}
+  - component: {fileID: 6715436620639773065}
   m_Layer: 0
-  m_Name: lowpoly_rifle_item
+  m_Name: launcher_ammo
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5713766944938621436
+--- !u!4 &7723490316942228054
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4900110389139678022}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 14.584723, y: 0.92345625, z: 41.972904}
-  m_LocalScale: {x: 17.761333, y: 17.761333, z: 17.761333}
+  m_GameObject: {fileID: 7403485297501053537}
+  m_LocalRotation: {x: -0.47211874, y: -0.52640665, z: -0.52640665, w: 0.47211874}
+  m_LocalPosition: {x: 114.63, y: 0.21852267, z: 53.971}
+  m_LocalScale: {x: 43.255543, y: 42.530525, z: 12.327392}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8711293558295918169
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -96.224}
+--- !u!33 &4523206082859714053
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4900110389139678022}
-  m_Mesh: {fileID: -5495902117074765545, guid: e370f0ad93955c5178c44b562a37a33e, type: 3}
---- !u!23 &6845555133228548755
+  m_GameObject: {fileID: 7403485297501053537}
+  m_Mesh: {fileID: -1355648145111951648, guid: 9d59ba2cc9003f70f94503810e264626, type: 3}
+--- !u!23 &2583545607335055517
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4900110389139678022}
+  m_GameObject: {fileID: 7403485297501053537}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -63,7 +62,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7922251121040759823, guid: e370f0ad93955c5178c44b562a37a33e, type: 3}
   - {fileID: 2100000, guid: d394a1f1cf69d4de194cec0c37cb5b4b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -86,27 +84,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3431042990278406446
+--- !u!64 &4362218999525629396
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4900110389139678022}
+  m_GameObject: {fileID: 7403485297501053537}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: -5495902117074765545, guid: e370f0ad93955c5178c44b562a37a33e, type: 3}
---- !u!54 &4658729675964732228
+  m_Mesh: {fileID: -1355648145111951648, guid: 9d59ba2cc9003f70f94503810e264626, type: 3}
+--- !u!54 &3356472964252048806
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4900110389139678022}
+  m_GameObject: {fileID: 7403485297501053537}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -116,34 +114,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5996416434720390579
+--- !u!114 &6715436620639773065
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4900110389139678022}
+  m_GameObject: {fileID: 7403485297501053537}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 978d667fd1e5b4e828061fe4fea92bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  desc: 'Weapon : Rifle'
-  name: Rifle
-  index: 1
-  type: 0
-  value: 100
---- !u!136 &3798434012647695336
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4900110389139678022}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.015
-  m_Height: 0.09
-  m_Direction: 1
-  m_Center: {x: -0.0000000016298145, y: -0.0056436793, z: 0.0057203663}
+  desc: 'Weapon Ammo : Launcher'
+  name: Launcher
+  index: 3
+  type: 1
+  value: 5
