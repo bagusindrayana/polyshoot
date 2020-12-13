@@ -14,10 +14,13 @@ public class Door : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip openSound;
     public AudioClip closeSound;
+    public AudioClip lockSound;
     float  c;
 
     public UnityEvent doorOpen;
     public UnityEvent doorClose;
+
+    public List<bool> requiredToOpen;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +44,11 @@ public class Door : MonoBehaviour
     }
 
     public void InteractDoor(){
-        if(!interactable){
+        if(!interactable || !checkRequired()){
+            if(audioSource != null && lockSound != null){
+                audioSource.clip = lockSound;
+                audioSource.Play();
+            }
             return;
         }
         open = !open;
@@ -64,6 +71,19 @@ public class Door : MonoBehaviour
     public void LockDoor(){
         interactable = false;
         c = 0f;
+    }
+
+    public void updateRequired(int index){
+        requiredToOpen[index] = true;
+    }
+
+    public bool checkRequired(){
+        foreach(var b in requiredToOpen){
+            if(!b){
+                return false;
+            }
+        }
+        return true;
     }
 
 
