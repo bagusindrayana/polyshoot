@@ -3328,6 +3328,12 @@ MonoBehaviour:
   detectRange: 15
   seeTarget: 0
   walkSound: {fileID: 8300000, guid: df9fac6dd994f9c45ad2698be718771f, type: 3}
+  enemyMove:
+    m_PersistentCalls:
+      m_Calls: []
+  enemyIdle:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &9114885143037108628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3340,8 +3346,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4838848d298bfe0dead14bce66b407ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 100
+  m_enemyHealth: 100
   deadBody: {fileID: 6363051191606001337, guid: 4289feb155e302bff9d8266318534fd7, type: 3}
+  enemyDead:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &9114885143457958042
 MonoBehaviour:
   m_ObjectHideFlags: 0

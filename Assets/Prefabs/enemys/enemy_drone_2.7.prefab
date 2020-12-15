@@ -496,8 +496,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4838848d298bfe0dead14bce66b407ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 100
+  m_enemyHealth: 100
   deadBody: {fileID: 1248365480985307242, guid: 53415db2d9a6a4742b219d7daec18c23, type: 3}
+  enemyDead:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!82 &4538081047253462488
 AudioSource:
   m_ObjectHideFlags: 0
