@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyStatus : MonoBehaviour
 {	
 
 	public float enemyHealth;
 	public GameObject deadBody;
+    public UnityEvent enemyDead;
     bool dead;
 
     // Start is called before the first frame update
@@ -25,8 +27,9 @@ public class EnemyStatus : MonoBehaviour
     	enemyHealth -= dmg;
     	if(enemyHealth <= 0 && !dead){
     		Instantiate(deadBody,transform.position+new Vector3(0,2f,0),transform.rotation);
-    		Destroy(gameObject);
             dead = true;
+            enemyDead.Invoke();
+    		Destroy(gameObject);
     	}
     }
 }
