@@ -30,7 +30,10 @@ public class Door : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        if(door == null){
+            return;
+        }
         if(c < 3f){
             c += Time.deltaTime;
             if(open){

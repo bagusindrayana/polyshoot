@@ -23,6 +23,7 @@ public class EnemyStatus : MonoBehaviour
        }
     }
 	public GameObject deadBody;
+    public Transform deadBodySpawn;
     public UnityEvent enemyDead;
     bool dead;
 
@@ -43,7 +44,12 @@ public class EnemyStatus : MonoBehaviour
     }
 
     void Die(){
-        Instantiate(deadBody,transform.position+new Vector3(0,2f,0),transform.rotation);
+        if(deadBodySpawn != null){
+            Instantiate(deadBody,deadBodySpawn.position+new Vector3(0,2f,0),deadBodySpawn.rotation);
+        } else {
+            Instantiate(deadBody,transform.position+new Vector3(0,2f,0),transform.rotation);
+        }
+        
         dead = true;
         enemyDead.Invoke();
         Destroy(gameObject);

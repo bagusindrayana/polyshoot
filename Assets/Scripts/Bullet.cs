@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour
             int dist = (int)Vector3.Distance(transform.position,c.transform.position);
             if(c.transform.tag == "Enemy" || c.transform.tag == "Damageable" || c.transform.tag == "Player"){
                 c.transform.SendMessage("ApplyDamage",bulletDamage - (dist * 10),SendMessageOptions.DontRequireReceiver);
-                c.transform.SendMessageUpwards("ApplyDamage",bulletDamage - (dist * 10),SendMessageOptions.DontRequireReceiver);
+                //c.transform.SendMessageUpwards("ApplyDamage",bulletDamage - (dist * 10),SendMessageOptions.DontRequireReceiver);
             }
             
 			Rigidbody rb = c.GetComponent<Rigidbody>();

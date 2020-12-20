@@ -30,7 +30,10 @@ public class EnemyWeapon : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        if(ec.stop){
+            return;
+        }
         Vector3 newVec = (target.position - transform.position);
         Quaternion targetRot = Quaternion.LookRotation(newVec) * Quaternion.Euler(rotOffset);
         transform.rotation = Quaternion.Slerp(transform.rotation,targetRot,2f * Time.deltaTime) ;
@@ -44,9 +47,9 @@ public class EnemyWeapon : MonoBehaviour
     	if(curTime >= fireDelay && dist <= ec.attackDistance){
     		
             
-                
+            int layerMask =~ LayerMask.GetMask("Shield");
             RaycastHit hit;
-            if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, ec.attackDistance) && !bulletRigidBody)
+            if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, ec.attackDistance,layerMask) && !bulletRigidBody)
             {
                 
                 if(hit.transform == target){
@@ -71,7 +74,7 @@ public class EnemyWeapon : MonoBehaviour
                         hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(1000f * firePoint.forward, hit.point);
                     }
 
-
+                    Debug.DrawRay(firePoint.position, hit.point, Color.green);
                     
                     var he = Instantiate(hitEffect,hit.point,Quaternion.LookRotation(hit.normal));
                     he.AddComponent<DestroyInSecond>();
@@ -86,6 +89,7 @@ public class EnemyWeapon : MonoBehaviour
                 
             } 
             else {
+                Debug.DrawRay(firePoint.position, firePoint.forward * 100f, Color.yellow);
                 if(attackTime < 2f){
                     GameObject sfx = new GameObject();
                     sfx.AddComponent<AudioSource>();

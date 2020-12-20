@@ -180,4 +180,8 @@ public class PlayerController : MonoBehaviour
         sfx.AddComponent<DestroyInSecond>();
         sfx.GetComponent<DestroyInSecond>().timeToDestroy = 2f;
     }
+
+    public void SetPlayerPos(Transform t){
+        transform.position = t.position;
+    }
 }

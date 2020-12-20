@@ -6,7 +6,22 @@ using UnityEngine.Events;
 
 public class PlayerStatus : MonoBehaviour
 {	
-	public float playerHealth;
+    [SerializeField]
+    private float m_playerHealth;
+
+    public float playerHealth
+    {
+       get { return m_playerHealth; }
+       set {
+            m_playerHealth = value;
+            if(m_playerHealth <= 0) 
+            {
+                m_playerHealth = 0;
+                this.Die();
+            }
+
+       }
+    }
     public Vector2 rangeShakeX = new Vector2(0,10);
     public Vector2 rangeShakeY = new Vector2(0,10);
     public Vector2 rangeShakeZ = new Vector2(0,10);
@@ -28,17 +43,20 @@ public class PlayerStatus : MonoBehaviour
         if(playerHealth > 100f){
             playerHealth = 100f;
         }
-        healthBar.value = playerHealth;
+        if(healthBar != null){
+            healthBar.value = playerHealth;
+        }
     }
 
     public void ApplyDamage(float dmg){
     	playerHealth -= dmg;
-        shake += 0.1f;
-        if(playerHealth <= 0){
-            playerDead.Invoke();
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
+        shake += 0.05f;
+    }
+
+    void Die(){
+        playerDead.Invoke();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     

@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour
     public PlayerStatus playerStatus;
     public UnityEvent onInit;
 
+    public void Awake() 
+    { 
+        DontDestroyOnLoad(gameObject); 
+    }
+
     void Start()
     {   
         PlayerPrefs.SetString("LEVEL",currentLevel);
@@ -28,7 +33,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void openScene(string sceneName){
-         SceneManager.LoadScene(sceneName);
+        LoadingData.sceneToLoad = sceneName;
+        SceneManager.LoadScene("LoadingScene");
     }
 
     public void saveString(string key,string val){
@@ -62,15 +68,17 @@ public class GameManager : MonoBehaviour
     public void loadGame(){
         var weapons = PlayerPrefsX.GetStringArray ("MyWeapons");
         
-        for (int i = 0; i < weapons.Length; i++)
-        {
-            string[] s = ((string)weapons[i]).Split(char.Parse("|"));
-            var wi = weaponManager.findWeaponByName(s[0]);
-            if(wi >= 0){
-                weaponManager.giveWeapon((int)wi,int.Parse(s[1]));
+        if(weaponManager != null){
+            for (int i = 0; i < weapons.Length; i++)
+            {
+                string[] s = ((string)weapons[i]).Split(char.Parse("|"));
+                var wi = weaponManager.findWeaponByName(s[0]);
+                if(wi >= 0){
+                    weaponManager.giveWeapon((int)wi,int.Parse(s[1]));
+                }
             }
+            playerStatus.playerHealth = (float)PlayerPrefs.GetInt("PlayerHealth",100);
         }
-        playerStatus.playerHealth = (float)PlayerPrefs.GetInt("PlayerHealth",100);
     }
 
     public void resetData(){
@@ -82,4 +90,7 @@ public class GameManager : MonoBehaviour
     public void exitGame(){
         Application.Quit();
     }
+
+
 }
+

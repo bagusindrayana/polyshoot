@@ -14,6 +14,8 @@ public class EnemyController : MonoBehaviour
     public AudioClip walkSound;
     public UnityEvent enemyMove;
     public UnityEvent enemyIdle;
+    public List<EnemyController> enemyCompanions;
+    public bool stop;
 
 
     void Start()
@@ -32,7 +34,10 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(stop){
+
+            return;
+        }
         agent.SetDestination(target.position);
         float dist = Vector3.Distance(transform.position,target.position);
         if(!CanNavigateToPoint(target.position)){
@@ -106,5 +111,19 @@ public class EnemyController : MonoBehaviour
         a_sfx.Play();
         sfx.AddComponent<DestroyInSecond>();
         sfx.GetComponent<DestroyInSecond>().timeToDestroy = 2f;
+    }
+
+    public void stopEnemy(){
+        stop = true;
+        foreach(var e in enemyCompanions){
+            e.stop = stop;
+        }
+    }
+
+    public void resumeEnemy(){
+        stop = false;
+        foreach(var e in enemyCompanions){
+            e.stop = stop;
+        }
     }
 }

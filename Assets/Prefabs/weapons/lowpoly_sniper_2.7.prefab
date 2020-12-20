@@ -114,7 +114,7 @@ MonoBehaviour:
   aimZooom: 40
   ammoText: {fileID: 7914366427432284894}
   originalZoom: 0
-  hitEffect: {fileID: 838255497811163151, guid: 336b84d8b9b5243d69c2c564533bc1c3, type: 3}
+  hitEffect: {fileID: 2127235496722616968, guid: 4691b3f8a8fda4a6e9f75ed973d84f6d, type: 3}
   rangeRecoilX: {x: 0, y: -10}
   rangeRecoilY: {x: -5, y: 5}
   rangeRecoilZ: {x: -5, y: 5}

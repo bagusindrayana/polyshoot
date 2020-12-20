@@ -25,7 +25,8 @@ public class MainMenu : MonoBehaviour
     }
 
     public void openScene(string sceneName){
-         SceneManager.LoadScene(sceneName);
+        LoadingData.sceneToLoad = sceneName;
+         SceneManager.LoadScene("LoadingScene");
     }
 
     public void continueGame(){
