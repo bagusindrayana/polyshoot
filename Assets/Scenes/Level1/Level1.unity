@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657934, g: 0.4964136, b: 0.5748189, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6276,8 +6276,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4838848d298bfe0dead14bce66b407ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 0
+  m_enemyHealth: 0
   deadBody: {fileID: 0}
+  deadBodySpawn: {fileID: 0}
+  enemyDead:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!23 &715951088
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11074,8 +11078,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4838848d298bfe0dead14bce66b407ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 0
+  m_enemyHealth: 0
   deadBody: {fileID: 0}
+  deadBodySpawn: {fileID: 0}
+  enemyDead:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!23 &1255155854
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11502,8 +11510,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4838848d298bfe0dead14bce66b407ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 0
+  m_enemyHealth: 0
   deadBody: {fileID: 0}
+  deadBodySpawn: {fileID: 0}
+  enemyDead:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!23 &1307576385
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15192,6 +15204,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1648976123}
   m_Mesh: {fileID: 6940125351870108067, guid: 9d59ba2cc9003f70f94503810e264626, type: 3}
+--- !u!1 &1662071953 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1662071953, guid: 420d870838ca17fbf8c5ea76b115e9ce, type: 3}
+  m_PrefabInstance: {fileID: 6395583399236733468}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1666569507
 GameObject:
   m_ObjectHideFlags: 0
@@ -17158,6 +17175,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  pauseGameUI: {fileID: 1662071953}
 --- !u!1 &1908884652
 GameObject:
   m_ObjectHideFlags: 0
@@ -21511,6 +21529,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1479676008, guid: 420d870838ca17fbf8c5ea76b115e9ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1902085732}
+    - target: {fileID: 1640349661, guid: 420d870838ca17fbf8c5ea76b115e9ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1902085732}
     - target: {fileID: 873863120985765546, guid: 420d870838ca17fbf8c5ea76b115e9ce, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -21684,8 +21710,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4838848d298bfe0dead14bce66b407ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 0
+  m_enemyHealth: 0
   deadBody: {fileID: 0}
+  deadBodySpawn: {fileID: 0}
+  enemyDead:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!33 &6509109614568917607
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -21947,6 +21977,8 @@ MonoBehaviour:
   enemyIdle:
     m_PersistentCalls:
       m_Calls: []
+  enemyCompanions: []
+  stop: 0
 --- !u!114 &7143185292030979481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21959,13 +21991,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dafacccbc40e40a79450fa4daf86806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 0
+  m_enemyHealth: 0
   deadBody: {fileID: 0}
+  deadBodySpawn: {fileID: 0}
+  enemyDead:
+    m_PersistentCalls:
+      m_Calls: []
   bosBody:
   - {fileID: 6491086982931026420}
   - {fileID: 1307576384}
   - {fileID: 715951087}
   - {fileID: 1255155853}
+  onBodyDestroy:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!23 &7164406482223634805
 MeshRenderer:
   m_ObjectHideFlags: 0

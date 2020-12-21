@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public WeaponManager weaponManager;
     public PlayerStatus playerStatus;
     public UnityEvent onInit;
+    public GameObject pauseGameUI;
+    bool pause;
 
     public void Awake() 
     { 
@@ -29,7 +31,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetButtonDown("Cancel")){
+            if(pauseGameUI != null){
+                if(pause){
+                    resumeGame();
+                } else {
+                    puseGame();
+                }
+            }
+        }
     }
 
     public void openScene(string sceneName){
@@ -91,6 +101,20 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void puseGame(){
+        pauseGameUI.SetActive(true);
+        Time.timeScale = 0f;
+        pause = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
 
+    public void resumeGame(){
+        pauseGameUI.SetActive(false);
+        Time.timeScale = 1f;
+        pause = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 }
 

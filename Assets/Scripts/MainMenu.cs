@@ -11,7 +11,9 @@ public class MainMenu : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         if(PlayerPrefs.GetString("LEVEL") != null && PlayerPrefs.GetString("LEVEL") != ""){
             Debug.Log(PlayerPrefs.GetString("LEVEL"));
         	haveSaveData.Invoke();

@@ -44,7 +44,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
+        if(Time.timeScale == 0f){
+            return;
+        }
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
     

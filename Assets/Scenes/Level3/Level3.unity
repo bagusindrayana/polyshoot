@@ -10463,8 +10463,8 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1902085732}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: openScene
-        m_Mode: 5
+        m_MethodName: OpenNextLevel
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -26869,6 +26869,7 @@ MonoBehaviour:
   onInit:
     m_PersistentCalls:
       m_Calls: []
+  pauseGameUI: {fileID: 6395583399236733469}
 --- !u!1 &1906746866
 GameObject:
   m_ObjectHideFlags: 0
@@ -32071,6 +32072,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1479676008, guid: 420d870838ca17fbf8c5ea76b115e9ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1902085732}
+    - target: {fileID: 1479676008, guid: 420d870838ca17fbf8c5ea76b115e9ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: resumeGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 1640349661, guid: 420d870838ca17fbf8c5ea76b115e9ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1902085732}
+    - target: {fileID: 1640349661, guid: 420d870838ca17fbf8c5ea76b115e9ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: openScene
+      objectReference: {fileID: 0}
     - target: {fileID: 873863120985765546, guid: 420d870838ca17fbf8c5ea76b115e9ce, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -32189,6 +32206,11 @@ PrefabInstance:
       objectReference: {fileID: 1902085732}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 420d870838ca17fbf8c5ea76b115e9ce, type: 3}
+--- !u!1 &6395583399236733469 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1662071953, guid: 420d870838ca17fbf8c5ea76b115e9ce, type: 3}
+  m_PrefabInstance: {fileID: 6395583399236733468}
+  m_PrefabAsset: {fileID: 0}
 --- !u!65 &6682642041892884322
 BoxCollider:
   m_ObjectHideFlags: 0

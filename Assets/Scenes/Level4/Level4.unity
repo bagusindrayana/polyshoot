@@ -659,6 +659,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1479676008, guid: 420d870838ca17fbf8c5ea76b115e9ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1879393522}
+    - target: {fileID: 1479676008, guid: 420d870838ca17fbf8c5ea76b115e9ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: resumeGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 1640349661, guid: 420d870838ca17fbf8c5ea76b115e9ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1879393522}
+    - target: {fileID: 1640349661, guid: 420d870838ca17fbf8c5ea76b115e9ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: openScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662071956, guid: 420d870838ca17fbf8c5ea76b115e9ce, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6395583397971938671, guid: 420d870838ca17fbf8c5ea76b115e9ce, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -757,6 +777,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 420d870838ca17fbf8c5ea76b115e9ce, type: 3}
+--- !u!1 &477922677 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1662071953, guid: 420d870838ca17fbf8c5ea76b115e9ce, type: 3}
+  m_PrefabInstance: {fileID: 477922676}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &484199728 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2659319194742186823, guid: 4636af1beb5433d45a9a21bfd0598309, type: 3}
@@ -3098,6 +3123,7 @@ MonoBehaviour:
   onInit:
     m_PersistentCalls:
       m_Calls: []
+  pauseGameUI: {fileID: 477922677}
 --- !u!4 &1879393523
 Transform:
   m_ObjectHideFlags: 0
