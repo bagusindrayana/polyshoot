@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
         }
         PlayerPrefsX.SetStringArray ("MyWeapons",weapons);
         saveInt("PlayerHealth",(int)playerStatus.playerHealth);
+        PlayerPrefs.Save();
         
     }
 
@@ -95,6 +96,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetString("LEVEL",null);
         PlayerPrefs.SetInt("PlayerHealth",100);
         PlayerPrefsX.SetStringArray ("MyWeapons",new string[0]);
+        PlayerPrefs.Save();
     }
 
     public void exitGame(){
@@ -110,6 +112,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void resumeGame(){
+    	//Debug.Log("Resume");
         pauseGameUI.SetActive(false);
         Time.timeScale = 1f;
         pause = false;
